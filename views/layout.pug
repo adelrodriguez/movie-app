@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+
+    meta(
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    )
+
+    //- SEMANTIC UI
+    link(
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css"
+      integrity="sha256-/Z28yXtfBv/6/alw+yZuODgTbKZm86IKbPE/5kjO/xY="
+      crossorigin="anonymous"
+    )
+
+    //- STYLESHEET
+    link(rel="stylesheet", href="/stylesheets/style.css")
+
+    //- JQUERY
+    script(src="https://code.jquery.com/jquery-3.2.1.min.js")
+
+    //- SEMANTIC JS
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js")
+
+    if title != null
+      title Movies - #{title}
+    else
+      title Movies
+  body
+    include ./includes/navbar
+    .page-content
+      .ui.container
+        block content

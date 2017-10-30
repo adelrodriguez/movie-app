@@ -1,0 +1,56 @@
+.ui.center.aligned.container  
+  form.ui.form(action="/search" method="GET")
+    .ui.search
+      .ui.fluid.icon.input
+        input.prompt(
+          type="text"
+          placeholder="Search movies..."
+          name="q"
+          required
+        )
+        i.search.icon
+      .results
+  .ui.three.column.form.segment
+    .inline.fields
+      .field
+        label Genre
+        .ui.search.selection.dropdown
+          input#genre-filter(name="genre" type="hidden")
+          i.dropdown.icon
+          .default.text Genre
+          .menu
+            .item(data-value="Action") Action
+            .item(data-value="Adventure") Adventure
+            .item(data-value="Biography") Biography
+            .item(data-value="Comedy") Comedy
+            .item(data-value="Crime") Crime
+            .item(data-value="Drama") Drama
+            .item(data-value="Family") Family
+            .item(data-value="Fantasy") Fantasy
+            .item(data-value="Horror") Horror
+            .item(data-value="Musical") Musical
+            .item(data-value="Mystery") Mystery
+            .item(data-value="Romance") Romance
+            .item(data-value="Sci-Fi") Sci-Fi
+            .item(data-value="Thriller") Thriller
+            .item(data-value="Sport") Sport
+            .item(data-value="War") War
+      .field
+        label Director
+        .ui.search.selection.dropdown
+          input#director-filter(name="director" type="hidden")
+          i.dropdown.icon
+          .default.text Director
+          .menu
+            each director in directors
+              .item(data-value=director.name) #{director.name}
+      .field
+        label Actor
+        .ui.search.selection.dropdown
+          input#actor-filter(name="actor" type="hidden")
+          i.dropdown.icon
+          .default.text Actor
+          .menu
+            each actor in actors
+              .item(data-value=actor.name) #{actor.name}
+      .ui.button#clear Clear

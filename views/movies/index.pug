@@ -1,0 +1,46 @@
+extends ../layout
+
+block content
+  unless disableSearch
+    include ../includes/search
+  table.ui.selectable.celled.table
+    thead
+      tr
+        th.two.wide Title
+        th Description
+        th.one.wide Genres
+        th.two.wide Director
+        th.two.wide Actors
+        th Actions
+    tbody
+      each movie in movies
+        tr
+          td #{movie.title}
+          td #{movie.description}
+          td
+            each genre in movie.genres
+              p #{genre}
+          //- If there's a director name, show it. Otherwise, leave cell empty
+          if (movie.director) 
+            td #{movie.director.name}
+          else
+            td #{movie.director}
+          td
+            each actor in movie.actors
+                p #{actor.name}
+          td
+            p
+              a.circular.ui.icon.button(href="/movies/" + movie._id + "/edit")
+                i.edit.icon
+            p
+              button.circular.ui.icon.button.delete-button
+                i.remove.icon
+              include ../includes/delete
+  script(type='text/javascript').
+    searchContent = !{JSON.stringify(movies)}
+  script(type='text/javascript')
+    include ../../public/scripts/filter.js
+  script(type='text/javascript')
+    include ../../public/scripts/search.js
+  script(type='text/javascript')
+    include ../../public/scripts/delete.js

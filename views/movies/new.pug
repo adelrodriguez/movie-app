@@ -1,0 +1,51 @@
+extends ../layout
+
+block content
+  h1.ui.header Add a new movie
+  form.ui.form(action="/movies" method="POST")
+    .field
+      label Title
+      input(
+        type="text"
+        id="titleInput"
+        name="movie[title]"
+        placeholder="Movie title"
+        required
+      )
+    .field
+      label Description
+      input(
+        type="text"
+        id="descriptionInput"
+        name="movie[description]"
+        placeholder="Description"
+        required
+      )
+    .field
+      label Genres
+      select.ui.fluid.dropdown(
+        name="movie[genres][]"
+        multiple="multiple"
+        id="genre-select"
+      )
+        option(value="Action") Action
+        option(value="Adventure") Adventure
+        option(value="Biography") Biography
+        option(value="Comedy") Comedy
+        option(value="Crime") Crime
+        option(value="Drama") Drama
+        option(value="Family") Family
+        option(value="Fantasy") Fantasy
+        option(value="Horror") Horror
+        option(value="Musical") Musical
+        option(value="Mystery") Mystery
+        option(value="Romance") Romance
+        option(value="Sci-Fi") Sci-Fi
+        option(value="Thriller") Thriller
+        option(value="Sport") Sport
+        option(value="War") War
+    button.ui.button(
+      type="submit"
+    ) Submit
+  script
+    include ../../public/scripts/form.js

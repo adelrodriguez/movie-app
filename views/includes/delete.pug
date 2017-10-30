@@ -1,0 +1,11 @@
+.ui.mini.modal
+  .header Delete Movie
+  .content
+    p Are you sure you want to do this?
+  .actions
+    .ui.negative.button Nope
+    form(action=`/movies/${movie._id}?_method=DELETE` method="POST")
+      button.ui.positive.right.labeled.icon.button
+        |
+        | Yes
+        i.checkmark.icon

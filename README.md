@@ -1,4 +1,4 @@
-# Property App
+# Movie App
 
 This project is a CRUD application for cataloguing movies. It contains the following features:
 

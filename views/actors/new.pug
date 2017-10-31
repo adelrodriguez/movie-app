@@ -1,29 +1,30 @@
 extends ../layout
 
 block content
-  h1 Add a new actor
-  form.ui.form(action="/actors" method="POST")
-    .field
-      label Name
-      input(
-        type="text"
-        id="nameInput"
-        name="actor"
-        placeholder="Actor's name"
-        required
-      )
-    .field
-      label Movies
-      select.ui.fluid.dropdown(
-        name="movies[]"
-        multiple="multiple"
-        id="movie-select"
-        required
-      )
-        each movie in movies
-          option(value=movie.title) #{movie.title}
-    button.ui.button(
-      type="submit"
-    ) Submit
+  .ui.segment
+    h1 Add a new actor
+    form.ui.form(action="/actors" method="POST")
+      .field
+        label Name
+        input(
+          type="text"
+          id="nameInput"
+          name="actor"
+          placeholder="Actor's name"
+          required
+        )
+      .field
+        label Movies
+        select.ui.fluid.dropdown(
+          name="movies[]"
+          multiple="multiple"
+          id="movie-select"
+          required
+        )
+          each movie in movies
+            option(value=movie.title) #{movie.title}
+      button.ui.primary.button(
+        type="submit"
+      ) Submit
   script
     include ../../public/scripts/form.js

@@ -1,6 +1,6 @@
 .ui.center.aligned.container  
   form.ui.form(action="/search" method="GET")
-    .ui.search
+    .ui.loading.search
       .ui.fluid.icon.input
         input.prompt(
           type="text"
@@ -10,6 +10,7 @@
         )
         i.search.icon
       .results
+  .ui.horizontal.divider OR
   .ui.three.column.form.segment
     .inline.fields
       .field

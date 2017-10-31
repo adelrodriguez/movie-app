@@ -3,7 +3,7 @@
 $('select').dropdown();
 
 // Use only if genres are already chosen
-if (genres) {
+if (typeof genres !== 'undefined') {
   genres.forEach((genre) => {
     $('select').dropdown('set selected', genre);
   });

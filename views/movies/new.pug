@@ -29,6 +29,7 @@ block content
           multiple="multiple"
           id="genre-select"
         )
+          option(value="") Genres
           option(value="Action") Action
           option(value="Adventure") Adventure
           option(value="Biography") Biography
@@ -52,6 +53,7 @@ block content
           multiple="multiple"
           id="actor-select"
         )
+          option(value="") Actors
           each actor in actors
             option(value=actor._id) #{actor.name}
       .field
@@ -60,6 +62,7 @@ block content
           name="movie[director]"
           id="director-select"
         )
+          option(value="") Director
           each director in directors
             option(value=director._id) #{director.name}
       button.ui.primary.button(

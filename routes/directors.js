@@ -9,7 +9,9 @@ const Director = require('../models/director');
 router.get('/new', (req, res) => {
   Movie.find({ director: null }, (err, movies) => {
     if (err) {
-      console.log(err);
+      console.error(err);
+      req.flash('error', err.message);
+      res.redirect('/movies');
     } else {
       res.render('directors/new', { movies });
     }
@@ -21,13 +23,17 @@ router.post('/', (req, res) => {
   // Create the new director
   Director.create({ name: req.body.director }, (err, director) => {
     if (err) {
-      console.log(err);
+      console.error(err);
+      req.flash('error', err.message);
+      res.redirect('directors/new');
     } else {
       // Find all movies directed
       req.body.movies.forEach((movie) => {
         Movie.findOne({ title: movie }, (err, foundMovie) => {
           if (err) {
-            console.log(err);
+            console.error(err);
+            req.flash('error', err.message);
+            res.redirect('directors/new'); 
           } else {
             foundMovie.director = director;
             foundMovie.save();
@@ -35,6 +41,7 @@ router.post('/', (req, res) => {
         });
       });
       // Redirect to index
+      req.flash('success', "Successfully added a new director!");      
       res.redirect('/movies');
     }
   });

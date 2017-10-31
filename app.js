@@ -1,5 +1,7 @@
 const express = require('express');
+const session = require('express-session');
 const mongoose = require('mongoose');
+const flash = require('connect-flash');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 
@@ -32,10 +34,24 @@ const app = express();
 
 app.set('view engine', 'pug');
 app.use(bodyParser.urlencoded({ extended: true }));
+// Add session
+app.use(session({
+  cookie: { maxAge: 60000 },
+  secret: "This is a random secret",
+  resave: false,
+  saveUninitialized: false
+}));
 // Server static files
 app.use(express.static('public'));
 // Override POST methods for PUT and DELETE requests
 app.use(methodOverride('_method'));
+// Set up flash messages
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.error = req.flash('error');
+  res.locals.success = req.flash('success');
+  next();
+});
 
 // Routes setup
 app.use('/', indexRoutes);

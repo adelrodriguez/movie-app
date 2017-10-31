@@ -4,7 +4,7 @@ block content
   h1 Add a new actor
   form.ui.form(action="/actors" method="POST")
     .field
-      label Title
+      label Name
       input(
         type="text"
         id="nameInput"
@@ -18,6 +18,7 @@ block content
         name="movies[]"
         multiple="multiple"
         id="movie-select"
+        required
       )
         each movie in movies
           option(value=movie.title) #{movie.title}

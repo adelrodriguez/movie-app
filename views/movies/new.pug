@@ -45,6 +45,23 @@ block content
           option(value="Thriller") Thriller
           option(value="Sport") Sport
           option(value="War") War
+      .field
+        label Actors
+        select.ui.fluid.dropdown(
+          name="movie[actors][]"
+          multiple="multiple"
+          id="actor-select"
+        )
+          each actor in actors
+            option(value=actor._id) #{actor.name}
+      .field
+        label Director
+        select.ui.fluid.dropdown(
+          name="movie[director]"
+          id="director-select"
+        )
+          each director in directors
+            option(value=director._id) #{director.name}
       button.ui.primary.button(
         type="submit"
       ) Submit

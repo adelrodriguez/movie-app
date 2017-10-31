@@ -41,8 +41,26 @@ router.get('/', (req, res) => {
 
 // NEW - show form to add a new movie
 router.get('/new', (req, res) => {
-  // Render new movie form
-  res.render('movies/new', { title: "Add a new movie" });
+  // find all the actors in the database
+  Actor.find({}, (err, actors) => {
+    if (err) {
+      console.error(err);
+      req.flash('error', err.message);
+      res.redirect('/movies');
+    } else {
+      // find all the directors in the database
+      Director.find({}, (err, directors) => {
+        if (err) {
+          console.error(err);
+          req.flash('error', err.message);
+          res.redirect('/movies');
+        } else {
+          // Render new movie form
+          res.render('movies/new', { title: "Add a new movie", actors, directors });
+        }
+      });
+    }
+  });
 });
 
 // CREATE - add a new movie

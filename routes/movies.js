@@ -65,6 +65,11 @@ router.get('/new', (req, res) => {
 
 // CREATE - add a new movie
 router.post('/', (req, res) => {
+  // if director is empty, delete the key from the request body
+  if(!req.body.movie.director) {
+    delete req.body.movie.director;
+  }
+
   // Create new movie in the database
   Movie.create(req.body.movie, (err, createdMovie) => {
     if (err) {
